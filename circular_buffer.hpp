@@ -3,11 +3,8 @@
 
 #include <memory>
 #include <stdexcept>
-#include <type_traits>
 #include <utility>
-#include <initializer_list>
 #include <algorithm>
-#include <iostream>
 #include <fstream>
 #include <string>
 #include <cstdio>
@@ -78,9 +75,9 @@ public:
 private:
     std::unique_ptr<T[]> buffer_;
     size_type capacity_;
-    size_type head_;  // индекс для следующей записи
-    size_type tail_;  // индекс для чтения
-    size_type size_;  // текущее количество элементов
+    size_type head_;
+    size_type tail_;
+    size_type size_;
 
     size_type next_index(size_type index) const noexcept;
     void advance_head() noexcept;
@@ -477,7 +474,7 @@ public:
 
 private:
     CircularBuffer* buffer_;
-    size_type pos_;  // позиция в буфере (0..size-1)
+    size_type pos_;
 };
 
 template<typename T>
@@ -521,7 +518,7 @@ public:
 
 private:
     const CircularBuffer* buffer_;
-    size_type pos_;  // позиция в буфере (0..size-1)
+    size_type pos_;
 };
 
 template<typename T>
@@ -554,4 +551,4 @@ typename CircularBuffer<T>::const_iterator CircularBuffer<T>::cend() const noexc
     return end();
 }
 
-#endif // CIRCULAR_BUFFER_HPP
+#endif
