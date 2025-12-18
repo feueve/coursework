@@ -7,7 +7,7 @@ int main() {
     try {
         std::cout << "=== Demonstration of Circular Buffer ===\n\n";
 
-        // 1. Создание и базовые операции
+        // Базовые операции
         std::cout << "1. Basic operations:\n";
         CircularBuffer<int> buffer(5);
         std::cout << "   Capacity: " << buffer.capacity() << std::endl;
@@ -25,7 +25,7 @@ int main() {
         }
         std::cout << std::endl;
 
-        // 2. Итераторы и сложные типы
+        // Итераторы
         std::cout << "\n2. Advanced features:\n";
         CircularBuffer<std::string> str_buffer(3);
         str_buffer.push("Hello");
@@ -38,7 +38,7 @@ int main() {
         }
         std::cout << std::endl;
 
-        // 3. Файловые операции (требование ТЗ)
+        // Файловые операции
         std::cout << "\n3. File operations (requirement):\n";
         CircularBuffer<int> file_buffer(4);
         file_buffer.push(100);

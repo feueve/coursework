@@ -32,7 +32,7 @@ CircularBuffer<int> buffer(3);
 buffer.push(1);
 buffer.push(2);
 buffer.push(3);
-buffer.push(4); // Should overwrite 1
+buffer.push(4);
 
 EXPECT_TRUE(buffer.full());
 EXPECT_EQ(buffer.size(), 3);
@@ -191,7 +191,6 @@ std::remove(filename.c_str());
 }
 
 TEST(CircularBufferTest, EdgeCases) {
-// Buffer of size 1
 CircularBuffer<int> single_buffer(1);
 single_buffer.push(42);
 EXPECT_TRUE(single_buffer.full());

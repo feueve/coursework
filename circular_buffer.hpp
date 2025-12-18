@@ -12,13 +12,10 @@
 template<typename T>
 class CircularBuffer {
 public:
-    using value_type = T;
     using reference = T&;
     using const_reference = const T&;
     using pointer = T*;
-    using const_pointer = const T*;
     using size_type = std::size_t;
-    using difference_type = std::ptrdiff_t;
 
     // Конструкторы
     explicit CircularBuffer(size_type capacity);
@@ -341,13 +338,11 @@ void CircularBuffer<T>::saveToFile(const std::string& filename) const {
         throw std::runtime_error("Cannot open file for writing: " + filename);
     }
 
-    // Сохраняем метаданные
     file.write(reinterpret_cast<const char*>(&capacity_), sizeof(capacity_));
     file.write(reinterpret_cast<const char*>(&size_), sizeof(size_));
     file.write(reinterpret_cast<const char*>(&head_), sizeof(head_));
     file.write(reinterpret_cast<const char*>(&tail_), sizeof(tail_));
 
-    // Сохраняем элементы
     for (size_type i = 0; i < size_; ++i) {
         const T& element = buffer_[(tail_ + i) % capacity_];
         file.write(reinterpret_cast<const char*>(&element), sizeof(T));
@@ -361,20 +356,17 @@ void CircularBuffer<T>::loadFromFile(const std::string& filename) {
         throw std::runtime_error("Cannot open file for reading: " + filename);
     }
 
-    // Читаем метаданные
     size_type new_capacity, new_size, new_head, new_tail;
     file.read(reinterpret_cast<char*>(&new_capacity), sizeof(new_capacity));
     file.read(reinterpret_cast<char*>(&new_size), sizeof(new_size));
     file.read(reinterpret_cast<char*>(&new_head), sizeof(new_head));
     file.read(reinterpret_cast<char*>(&new_tail), sizeof(new_tail));
 
-    // Пересоздаем буфер при необходимости
     if (new_capacity != capacity_) {
         buffer_ = std::make_unique<T[]>(new_capacity);
         capacity_ = new_capacity;
     }
 
-    // Читаем элементы
     head_ = new_head;
     tail_ = new_tail;
     size_ = new_size;
@@ -436,9 +428,6 @@ void CircularBuffer<T>::loadFromTextFile(const std::string& filename) {
 template<typename T>
 class CircularBuffer<T>::iterator {
 public:
-    using iterator_category = std::forward_iterator_tag;
-    using value_type = T;
-    using difference_type = std::ptrdiff_t;
     using pointer = T*;
     using reference = T&;
 
@@ -480,9 +469,6 @@ private:
 template<typename T>
 class CircularBuffer<T>::const_iterator {
 public:
-    using iterator_category = std::forward_iterator_tag;
-    using value_type = const T;
-    using difference_type = std::ptrdiff_t;
     using pointer = const T*;
     using reference = const T&;
 
