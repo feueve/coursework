@@ -5,7 +5,7 @@
 
 int main() {
     try {
-        std::cout << "=== Demonstration of Circular Buffer ===\n\n";
+        std::cout << "\n";
 
         // Базовые операции
         std::cout << "1. Basic operations:\n";
@@ -72,7 +72,6 @@ int main() {
         std::remove("buffer_data.txt");
         std::cout << "   Temporary files removed\n";
 
-        std::cout << "\n=== Demonstration completed successfully! ===\n";
         return 0;
 
     } catch (const std::exception& e) {
