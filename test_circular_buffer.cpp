@@ -3,7 +3,6 @@
 #include <fstream>
 #include <cstdio>
 
-// ==================== BASIC TESTS ====================
 
 TEST(CircularBufferTest, Constructor) {
 CircularBuffer<int> buffer(5);
@@ -140,7 +139,6 @@ EXPECT_EQ(buffer.capacity(), 2);
 EXPECT_EQ(buffer.size(), 2);
 }
 
-// Тест для emplace с std::pair (вместо Point)
 TEST(CircularBufferTest, EmplaceWithPair) {
 CircularBuffer<std::pair<int, std::string>> buffer(2);
 buffer.emplace(1, "One");
@@ -203,7 +201,6 @@ single_buffer.push(99);
 EXPECT_EQ(single_buffer.front(), 99);
 }
 
-// ==================== MAIN FOR GOOGLE TEST ====================
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
