@@ -17,19 +17,16 @@ public:
     using pointer = T*;
     using size_type = std::size_t;
 
-    // Конструкторы
     explicit CircularBuffer(size_type capacity);
     CircularBuffer(size_type capacity, const_reference value);
     CircularBuffer(std::initializer_list<T> init);
 
-    // Правило пяти
     CircularBuffer(const CircularBuffer& other);
     CircularBuffer(CircularBuffer&& other) noexcept;
     CircularBuffer& operator=(const CircularBuffer& other);
     CircularBuffer& operator=(CircularBuffer&& other) noexcept;
     ~CircularBuffer();
 
-    // Доступ к элементам
     reference front();
     const_reference front() const;
     reference back();
@@ -37,13 +34,11 @@ public:
     reference operator[](size_type index);
     const_reference operator[](size_type index) const;
 
-    // Состояние
     [[nodiscard]] bool empty() const noexcept;
     [[nodiscard]] bool full() const noexcept;
     [[nodiscard]] size_type size() const noexcept;
     [[nodiscard]] size_type capacity() const noexcept;
 
-    // Модификаторы
     void push(const_reference value);
     void push(T&& value);
     template<typename... Args>
@@ -52,13 +47,11 @@ public:
     void clear() noexcept;
     void resize(size_type new_capacity);
 
-    // Файловые операции
     void saveToFile(const std::string& filename) const;
     void loadFromFile(const std::string& filename);
     void saveToTextFile(const std::string& filename) const;
     void loadFromTextFile(const std::string& filename);
 
-    // Итераторы
     class iterator;
     class const_iterator;
 
@@ -81,7 +74,6 @@ private:
     void advance_tail() noexcept;
 };
 
-// Реализация методов
 
 template<typename T>
 CircularBuffer<T>::CircularBuffer(size_type capacity)
@@ -329,7 +321,6 @@ void CircularBuffer<T>::resize(size_type new_capacity) {
     size_ = elements_to_copy;
 }
 
-// Файловые операции
 
 template<typename T>
 void CircularBuffer<T>::saveToFile(const std::string& filename) const {
@@ -424,7 +415,6 @@ void CircularBuffer<T>::loadFromTextFile(const std::string& filename) {
     }
 }
 
-// Реализация итераторов
 template<typename T>
 class CircularBuffer<T>::iterator {
 public:

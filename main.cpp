@@ -7,7 +7,6 @@ int main() {
     try {
         std::cout << "\n";
 
-        // Базовые операции
         std::cout << "1. Basic operations:\n";
         CircularBuffer<int> buffer(5);
         std::cout << "   Capacity: " << buffer.capacity() << std::endl;
@@ -25,7 +24,6 @@ int main() {
         }
         std::cout << std::endl;
 
-        // Итераторы
         std::cout << "\n2. Advanced features:\n";
         CircularBuffer<std::string> str_buffer(3);
         str_buffer.push("Hello");
@@ -38,7 +36,6 @@ int main() {
         }
         std::cout << std::endl;
 
-        // Файловые операции
         std::cout << "\n3. File operations (requirement):\n";
         CircularBuffer<int> file_buffer(4);
         file_buffer.push(100);
@@ -67,7 +64,6 @@ int main() {
         file_buffer.saveToTextFile("buffer_data.txt");
         std::cout << "   Saved to text file: buffer_data.txt\n";
 
-        // Очистка временных файлов
         std::remove("buffer_data.bin");
         std::remove("buffer_data.txt");
         std::cout << "   Temporary files removed\n";
